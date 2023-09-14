@@ -1,4 +1,4 @@
-package com.example.docs;
+package com.example.docs.event;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
