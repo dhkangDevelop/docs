@@ -22,6 +22,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.TcpClient;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.text.MessageFormat;
@@ -39,6 +41,7 @@ public class SlackAppender extends AbstractAppender {
     private String username;
     private String profile;
     private WebClient webClient;
+    private AESCryptoUtil aesCryptoUtil;
 
     private static final Map<Integer, String> ICON_MAP;
     private static final Map<Integer, String> COLOR_MAP;
@@ -77,11 +80,16 @@ public class SlackAppender extends AbstractAppender {
     ) {
         super(name, filter, layout, ignoreExceptions, properties);
         this.appName = appName;
-        this.url = url;
         this.channel = channel;
         this.username = username;
         this.profile = profile;
         this.webClient = webClient;
+        try {
+            this.aesCryptoUtil = new AESCryptoUtil();
+            this.url = this.aesCryptoUtil.decrypt(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @PluginFactory
@@ -146,7 +154,6 @@ public class SlackAppender extends AbstractAppender {
                 title = MessageFormat.format("Service : {0} | Profile : {1} | Hostname : {2} | HostAddress : {3}",
                         serviceName, profile, hostName, hostAddress);
             }
-
 
             String logStatement = event.getMessage().getFormattedMessage();
             SlackMessage slackMessage = new SlackMessage();

@@ -12,7 +12,7 @@
         <!-- Custom Appender -->
         <SlackAppender name="SlackAppender"
                         appName="slackMessenger"
-                        url="https://hooks.slack.com/services/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"
+                        url="lO8UpJd0RlajiPjoylUMAmcFp5bZ8w109ixgZZAiYzRscTpNGA3y6NAl0ehbJHwrNs2jIh/rC0cVG5pYp+CX+0IPmVLImmEPtnXXtMkaVhk6sn6rE18H0TDZV7shb9fR"
                         channel="#develop"
                         username="dhkang"
                         profile="${sys:spring.profiles.active}"
