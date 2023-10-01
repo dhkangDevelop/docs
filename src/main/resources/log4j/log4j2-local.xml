@@ -40,6 +40,7 @@
         <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
         <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
         <Logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+
         <Root level="info">
             <AppenderRef ref="Console" />
         </Root>
@@ -48,6 +49,7 @@
                 <MarkerFilter marker="SLACK" onMatch="ACCEPT" onMismatch="DENY"/>
             </AppenderRef>
             <AppenderRef ref="file"/>
+            <AppenderRef ref="Console" />
         </Logger>
     </Loggers>
 </Configuration>

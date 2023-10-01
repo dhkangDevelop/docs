@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.ApplicationPidFileWriter;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.TimeZone;
 
+@EnableAspectJAutoProxy
 @SpringBootApplication
 public class DocsApplication {
     static final Logger LOGGER = LoggerFactory.getLogger(DocsApplication.class);
