@@ -1,5 +1,7 @@
-./logs
-
+logs
+logs/*
+pid
+etc
 HELP.md
 .gradle
 .gradle/**
